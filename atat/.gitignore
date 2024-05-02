@@ -1,0 +1,4 @@
+*.pyc
+example/CuPd_fcc
+example/NiAl_fcc
+tests
