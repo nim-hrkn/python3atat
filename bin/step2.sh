@@ -4,8 +4,8 @@ cp str_relax.out vol_0
 
 for name in vol_0/p*; 
 do (echo $name; cd $name; 
-python /home/kino/kino/kit/python-atat/atat/poscar2str.py --strout str_relax.out POSCAR; 
-python /home/kino/kino/kit/python-atat/atat/extract_force.py opt.json );
+python /home/kino/kino/kit/python3atat/bin/poscar2str.py --strout str_relax.out POSCAR; 
+python /home/kino/kino/kit/python3atat/bin/extract_force.py opt.json );
 done
 
 # fitfc -f -frnn=10  -fn -dT=10

@@ -120,7 +120,8 @@ def str2atoms(file='str.out'):
 
     atoms.set_scaled_positions(spos_wrapped)
     atoms.set_pbc(True)
-    return _reorder_atoms(atoms)
+    # return _reorder_atoms(atoms)
+    return atoms
 
 
 def atoms2str(atoms, strout='str.out'):

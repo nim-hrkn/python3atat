@@ -16,7 +16,8 @@ def main():
     if args.cif is not None:
         atoms.write(args.cif, format='cif')
     elif args.poscar:
-        atoms.write(args.poscar, format='vasp', direct=True)
+        # atoms.write(args.poscar, format='vasp', direct=True)
+        atoms.write(args.poscar, format='vasp')
 
 
 if __name__ == "__main__":

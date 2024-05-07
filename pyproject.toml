@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atat"
-version = "0.2.0"
+version = "0.2.1"
 description = "Python ATAT phonon package"
 authors = ["Hiori Kino <kino.hiori@nims.go.jp>"]
 license = "MIT"
