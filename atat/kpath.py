@@ -180,7 +180,20 @@ class Kpath:
         with open(filename, "w", encoding="utf-8") as f:
             f.write("\n".join(kpath_list)+"\n")
 
-    def gen_plot(self, filename=None):
+    def validate_unit(self, unit="THz"):
+        unit_lower = unit.lower()
+        if unit_lower not in ["thz", "ev","mev"]:
+            raise ValueError(f'unknown unit={unit}')
+        if unit_lower == "thz":
+            unit_factor = 1e-12
+        elif unit_lower == "ev":
+            unit_factor = 4.135665538536E-15
+        elif unit_lower == "mev":
+            unit_factor = 4.135665538536E-12
+        return unit_factor
+
+    def gen_plot(self, filename=None, unit="THz"):
+        unit_factor = self.validate_unit(unit)
 
         point_coords = self.path_info.get('reciprocal_point_coodinates')
         kstart = 0
@@ -216,8 +229,9 @@ class Kpath:
 
         fig, ax = plt.subplots()
 
-        for k, ev in zip(self.path_info.get('reciprocal_kpath'), self.path_info.get('eigenfreq')):
-            ax.plot(k, ev, "blue")
+        for k, freq in zip(self.path_info.get('reciprocal_kpath'), self.path_info.get('eigenfreq')):
+            freq = np.array(freq)*unit_factor
+            ax.plot(k, freq, "blue")
 
         xticks = []
         xticklabels = []
@@ -232,6 +246,7 @@ class Kpath:
 
         # kpath <- the last k
         ylim = ax.get_ylim()
+        ax.set_ylabel(unit)
 
         ax.vlines(xticks, ylim[0], ylim[1], "black")
 

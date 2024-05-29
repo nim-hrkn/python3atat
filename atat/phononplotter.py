@@ -60,7 +60,7 @@ class phononPlotter:
         self.parent_dir = parent_dir
 
     def plot_dispersion(self, filename="vol_0/eigenfreq.out", filenamne_kpathinfo="kpath_info.pickle",
-                        filename_png="eigenfreq.png"):
+                        filename_png="eigenfreq.png", unit="THz"):
         """
         Plot the phonon dispersion relation.
 
@@ -71,6 +71,7 @@ class phononPlotter:
         - filename (str): Filename of the eigenfrequency data. Default is 'vol_0/eigenfreq.out'.
         - filenamne_kpathinfo (str): Filename for the k-path information. Default is 'kpath_info.pickle'.
         - filename_png (str): Filename for the output PNG plot. Default is 'eigenfreq.png'.
+        - unit (str): the unit of frequency. Default is THz.
         """
         with open(os.path.join(self.parent_dir, filenamne_kpathinfo), "rb") as f:
             kpath = pickle.load(f)
@@ -79,7 +80,7 @@ class phononPlotter:
         filepath = os.path.join(self.parent_dir, filename)
         kpath = self.kpath
         _ = kpath.load_eigenfreq(filepath)  # kpath instance has data.
-        kpath.gen_plot(filename_png)
+        kpath.gen_plot(filename_png, unit=unit)
 
     def plot_freeenergy(self, filename="fvib", filename_png="freeneergy.png"):
         """
